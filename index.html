@@ -271,6 +271,7 @@
 
     <script>
         const BASE_URL = 'https://me-api-banckend.onrender.com';
+        app.use(cors({ origin: '*' })); 
 
         async function searchProjects() {
             const skill = document.getElementById('searchSkill').value;
