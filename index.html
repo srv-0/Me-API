@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me-API Playground</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --code-bg: #1e1e1e;
+            --code-text: #a5b4fc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-family: monospace;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        input {
+            height: 45px;
+            padding: 0.5rem;
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 200px;
+            max-height: 300px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            white-space: pre;
+            overflow-y: auto;
+            background-color: #f8fafc;
+            overflow-x: auto;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+
+        .json-viewer {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            min-height: 100px;
+            max-height: 800px ;
+            overflow-y: auto;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .container {
+            max-width: 95%;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 40% 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Me-API Dashboard</h1>
+                <span class="subtitle">POST /profile | GET /profile</span>
+            </div>
+            <div class="status-badge" id="apiStatus">API Status: Waiting...</div>
+        </header>
+
+        <div class="grid">
+            <section class="card">
+                <div style="margin: 1.5rem; margin-left: 250px;">
+                    <button type="button" class="btn-outline" onclick="fetchProfile()">Refresh Data (GET)</button>
+                </div>
+                <h2>Edit Profile</h2>
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="education">Education</label>
+                        <input type="text" id="education" name="education" placeholder="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="work">Work History (JSON)</label>
+                        <textarea id="work" name="work" placeholder=''></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skills">Skills</label>
+                        <input type="text" id="skills" name="skills" placeholder="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="links">Social Links (JSON)</label>
+                        <textarea id="links" name="links" placeholder=''></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projects">Projects (JSON)</label>
+                        <textarea id="projects" name="projects" placeholder=''></textarea>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <button type="submit">Update Profile (POST)</button>
+                        <button type="button" class="btn-outline" onclick="fetchProfile()">Refresh Data (GET)</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="card">
+                <section class="card" style="margin-bottom: 2rem;">
+                    <h2>Search & Filter</h2>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end;">
+                        <div style="flex-grow: 1; min-width: 200px;">
+                            <label for="searchSkill">Filter Projects by Skill</label>
+                            <input type="text" id="searchSkill" placeholder="e.g. MongoDB, Python">
+                        </div>
+                        <button onclick="searchProjects()">Search Projects</button>
+                        <button class="btn-outline" onclick="listProjects()">List All Projects</button>
+                        <button class="btn-outline" onclick="fetchProfile()">View Full Profile</button>
+                    </div>
+                </section>
+                <h2>API Response</h2>
+                <div id="jsonOutput" class="json-viewer">// Response will appear here...</div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:3000/api';
+
+        async function searchProjects() {
+            const skill = document.getElementById('searchSkill').value;
+            const output = document.getElementById('jsonOutput');
+
+            if (!skill) {
+                alert("Please enter a skill");
+                return;
+            }
+
+            output.textContent = `Searching for projects with skill: "${skill}"...`;
+
+            try {
+                const response = await fetch(`${BASE_URL}/projects?skill=${encodeURIComponent(skill)}`);
+                const data = await response.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                output.textContent = "Error searching: " + error.message;
+            }
+        }
+
+
+        async function listProjects() {
+            const output = document.getElementById('jsonOutput');
+            output.textContent = "Fetching all projects...";
+
+            try {
+
+                const response = await fetch(`${BASE_URL}/projects`);
+                const data = await response.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                output.textContent = "Error fetching projects: " + error.message;
+            }
+        }
+
+        async function fetchProfile() {
+            const output = document.getElementById('jsonOutput');
+            output.textContent = "Fetching full profile...";
+
+            try {
+
+                const response = await fetch(`${BASE_URL}/profile`);
+                const data = await response.json();
+                output.textContent = JSON.stringify(data, null, 2);
+
+
+                if (data.name) populateForm(data);
+
+            } catch (error) {
+                output.textContent = "Error: " + error.message;
+            }
+        }
+        function populateForm(data) {
+            if (data.name) document.getElementById('name').value = data.name;
+            if (data.email) document.getElementById('email').value = data.email;
+
+            if (data.education && Array.isArray(data.education)) {
+                const eduText = data.education
+                    .map(edu => `${edu.degree} at ${edu.institution} (${edu.year})`)
+                    .join("\n");
+                document.getElementById('education').value = eduText;
+            }
+
+            if (data.skills) document.getElementById('skills').value = Array.isArray(data.skills) ? data.skills.join(', ') : data.skills;
+
+            if (data.work) {
+                document.getElementById('work').value = JSON.stringify(data.work, null, 4);
+            }
+
+            if (data.skills) document.getElementById('skills').value = Array.isArray(data.skills) ? data.skills.join(', ') : data.skills;
+            if (data.projects) {
+                document.getElementById('projects').value = JSON.stringify(data.projects, null, 4);
+            }
+
+            if (data.links) {
+                document.getElementById('links').value = JSON.stringify(data.links, null, 4);
+            }
+        }
+
+
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const output = document.getElementById('jsonOutput');
+
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                education: document.getElementById('education').value, // (Note: keep this as string or array depending on your choice)
+                skills: document.getElementById('skills').value.split(',').map(s => s.trim()),
+                projects: [],
+                links: {},
+                work: []
+            };
+
+            try {
+                const rawProjects = document.getElementById('projects').value;
+                if (rawProjects) formData.projects = JSON.parse(rawProjects);
+
+                const rawWork = document.getElementById('work').value;
+                if (rawWork) formData.work = JSON.parse(rawWork);
+            } catch (e) {
+                alert("Invalid JSON in Projects, Links, or Work field");
+                return;
+            }
+
+            output.textContent = "Sending Update...";
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                output.textContent = JSON.stringify(result, null, 2);
+
+            } catch (error) {
+                output.textContent = "Error submitting data: " + error.message;
+            }
+        });
+
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const output = document.getElementById('jsonOutput');
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                education: document.getElementById('education').value,
+                skills: document.getElementById('skills').value.split(',').map(s => s.trim()),
+                projects: [],
+                links: {}
+            };
+
+            try {
+
+                const rawProjects = document.getElementById('projects').value;
+                if (rawProjects) formData.projects = JSON.parse(rawProjects);
+
+
+                const rawLinks = document.getElementById('links').value;
+                if (rawLinks) formData.links = JSON.parse(rawLinks);
+
+            } catch (e) {
+                alert("Invalid JSON in Projects or Links field");
+                return;
+            }
+            output.textContent = "Sending Update...";
+        });
+
+    </script>
+
+</body>
+
+</html>
