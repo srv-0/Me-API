@@ -12,6 +12,7 @@ This project follows a **Client-Server Architecture** with a decoupled frontend 
 * **Frontend (Vercel):** A Vanilla JS/HTML dashboard that consumes the API to display and update profile data.
 * **Backend (Render):** A Node.js/Express REST API that handles business logic and routing.
 * **Database (MongoDB Atlas):** A cloud NoSQL database storing the profile, projects, and work history schema.
+  
 ```mermaid
 graph TD;
     A[User / Browser] -->|HTTPS Request| B[Frontend (Vercel)];
