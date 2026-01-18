@@ -46,11 +46,11 @@ const myData = {
       description: "Web Developement Intern"
     }
   ],
-  links: {
+  links: [{
     github: "https://github.com/srv-0",
     linkedin: "https://www.linkedin.com/in/saurav-singh-srv16/",
     portfolio: "https://github.com/srv-0?tab=repositories"
-  }
+  }]
 };
 
 
