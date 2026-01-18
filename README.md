@@ -1,4 +1,4 @@
-# Me-API Playground & Portfolio
+# Me-API Playground
 
 A full-stack REST API and dashboard built as a Backend Engineering Assessment. This project serves a dynamic portfolio via a RESTful API connected to MongoDB Atlas, featuring a live dashboard for data management.
 
