@@ -12,7 +12,27 @@ This project follows a **Client-Server Architecture** with a decoupled frontend 
 * **Frontend (Vercel):** A Vanilla JS/HTML dashboard that consumes the API to display and update profile data.
 * **Backend (Render):** A Node.js/Express REST API that handles business logic and routing.
 * **Database (MongoDB Atlas):** A cloud NoSQL database storing the profile, projects, and work history schema.
+```mermaid
+graph TD;
+    A[User / Browser] -->|HTTPS Request| B[Frontend (Vercel)];
+    B -->|REST API Call| C[Backend API (Render)];
+    C -->|Mongoose Queries| D[(MongoDB Atlas)];
+    D -->|JSON Data| C;
+    C -->|JSON Response| B;
+    B -->|Render UI| A;
+```
+```
+**High-Level Overview:**
 
+```text
++-------------+         +----------------+         +-----------------+
+|   Client    |         |    Server      |         |    Database     |
+|  (Browser)  | <-----> | (Node/Express) | <-----> | (MongoDB Atlas) |
++-------------+  HTTPS  +----------------+  TCP    +-----------------+
+      ^                        ^
+      |                        |
+Hosted on Vercel        Hosted on Render
+```
 **Flow:** `Client (Vercel) -> HTTPS Request -> API (Render) -> Mongoose -> MongoDB Atlas`
 
 ## Tech Stack
