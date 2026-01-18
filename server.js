@@ -5,11 +5,10 @@ const cors = require('cors');
 const Profile = require('./models/Profile'); 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 3000;
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB Connected'))
