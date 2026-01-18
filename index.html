@@ -271,7 +271,7 @@
 
     <script>
         const BASE_URL = 'https://me-api-sqdk.onrender.com/api';
-        app.use(cors({ origin: '*' })); 
+        app.use(cors()); 
 
         async function searchProjects() {
             const skill = document.getElementById('searchSkill').value;
