@@ -6,7 +6,6 @@ const Profile = require('./models/Profile');
 
 const app = express();
 
-app.use(express.json());
 
 const allowedOrigins = [
   "https://me-api-umber.vercel.app",   
@@ -30,6 +29,8 @@ app.use(cors({
 }));
 
 app.options(/.*/, cors());
+
+app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
