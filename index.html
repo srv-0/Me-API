@@ -26,7 +26,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 95%;
             margin: 0 auto;
         }
 
@@ -53,7 +53,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 40% 1fr;
             gap: 2rem;
         }
 
@@ -63,36 +63,25 @@
             }
         }
 
-
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1.5rem;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
         }
 
         h2 {
             margin-top: 0;
             font-size: 1.1rem;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
-
 
         .form-group {
             margin-bottom: 1.5rem;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        input {
-            height: 45px;
-            padding: 0.5rem;
-            box-sizing: border-box;
         }
 
         label {
@@ -114,15 +103,10 @@
 
         textarea {
             resize: vertical;
-            min-height: 200px;
-            max-height: 300px;
+            min-height: 100px;
             font-family: 'Consolas', 'Monaco', monospace;
             font-size: 0.85rem;
-            line-height: 1.4;
-            white-space: pre;
-            overflow-y: auto;
             background-color: #f8fafc;
-            overflow-x: auto;
         }
 
         button {
@@ -133,7 +117,6 @@
             border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
-            transition: opacity 0.2s;
         }
 
         button:hover {
@@ -144,9 +127,8 @@
             background: transparent;
             border: 1px solid var(--primary);
             color: var(--primary);
-            margin-right: 0.5rem;
+            margin-left: 0.5rem;
         }
-
 
         .json-viewer {
             background-color: var(--code-bg);
@@ -155,10 +137,8 @@
             border-radius: 6px;
             font-family: 'Consolas', 'Monaco', monospace;
             font-size: 0.85rem;
-            overflow-x: auto;
             white-space: pre-wrap;
-            min-height: 100px;
-            max-height: 800px ;
+            max-height: 600px;
             overflow-y: auto;
         }
 
@@ -169,23 +149,6 @@
             font-size: 0.75rem;
             background: #dcfce7;
             color: #166534;
-        }
-
-        .container {
-            max-width: 95%;
-            margin: 0 auto;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 40% 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -198,49 +161,46 @@
                 <h1>Me-API Dashboard</h1>
                 <span class="subtitle">POST /profile | GET /profile</span>
             </div>
-            <div class="status-badge" id="apiStatus">API Status: Waiting...</div>
+            <div class="status-badge" id="apiStatus">API Status: Ready</div>
         </header>
 
         <div class="grid">
             <section class="card">
-                <div style="margin: 1.5rem; margin-left: 250px;">
-                    <button type="button" class="btn-outline" onclick="fetchProfile()">Refresh Data (GET)</button>
-                </div>
                 <h2>Edit Profile</h2>
                 <form id="profileForm">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="" required>
+                        <input type="email" id="email" name="email" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="education">Education</label>
-                        <input type="text" id="education" name="education" placeholder="">
+                        <label for="education">Education (Text)</label>
+                        <input type="text" id="education" name="education" placeholder="e.g. B.Tech at NIT Delhi">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skills">Skills (Comma separated)</label>
+                        <input type="text" id="skills" name="skills" placeholder="Node.js, React, MongoDB">
                     </div>
 
                     <div class="form-group">
                         <label for="work">Work History (JSON)</label>
-                        <textarea id="work" name="work" placeholder=''></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="skills">Skills</label>
-                        <input type="text" id="skills" name="skills" placeholder="">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="links">Social Links (JSON)</label>
-                        <textarea id="links" name="links" placeholder=''></textarea>
+                        <textarea id="work" name="work" placeholder='[{"company": "Bansal Engineers", "position": "Intern"}]'></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="projects">Projects (JSON)</label>
-                        <textarea id="projects" name="projects" placeholder=''></textarea>
+                        <textarea id="projects" name="projects" placeholder='[{"title": "My API", "techStack": ["Node"]}]'></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="links">Social Links (JSON)</label>
+                        <textarea id="links" name="links" placeholder='{"github": "..."}'></textarea>
                     </div>
 
                     <div style="margin-top: 1.5rem;">
@@ -250,27 +210,33 @@
                 </form>
             </section>
 
-            <section class="card">
-                <section class="card" style="margin-bottom: 2rem;">
+            <div>
+                <section class="card">
                     <h2>Search & Filter</h2>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end;">
                         <div style="flex-grow: 1; min-width: 200px;">
                             <label for="searchSkill">Filter Projects by Skill</label>
-                            <input type="text" id="searchSkill" placeholder="e.g. MongoDB, Python">
+                            <input type="text" id="searchSkill" placeholder="e.g. MongoDB">
                         </div>
-                        <button onclick="searchProjects()">Search Projects</button>
-                        <button class="btn-outline" onclick="listProjects()">List All Projects</button>
-                        <button class="btn-outline" onclick="fetchProfile()">View Full Profile</button>
+                        <button onclick="searchProjects()">Search</button>
+                        <button class="btn-outline" onclick="listProjects()">List All</button>
                     </div>
                 </section>
-                <h2>API Response</h2>
-                <div id="jsonOutput" class="json-viewer">// Response will appear here...</div>
-            </section>
+
+                <section class="card">
+                    <h2>API Response</h2>
+                    <div id="jsonOutput" class="json-viewer">// Response will appear here...</div>
+                </section>
+            </div>
         </div>
     </div>
 
     <script>
+       
         const BASE_URL = 'https://me-api-sqdk.onrender.com/api';
+
+   
+
         async function searchProjects() {
             const skill = document.getElementById('searchSkill').value;
             const output = document.getElementById('jsonOutput');
@@ -291,13 +257,11 @@
             }
         }
 
-
         async function listProjects() {
             const output = document.getElementById('jsonOutput');
             output.textContent = "Fetching all projects...";
 
             try {
-
                 const response = await fetch(`${BASE_URL}/projects`);
                 const data = await response.json();
                 output.textContent = JSON.stringify(data, null, 2);
@@ -311,60 +275,53 @@
             output.textContent = "Fetching full profile...";
 
             try {
-
                 const response = await fetch(`${BASE_URL}/profile`);
                 const data = await response.json();
                 output.textContent = JSON.stringify(data, null, 2);
 
-
-                if (data.name) populateForm(data);
+                if (data) populateForm(data);
 
             } catch (error) {
                 output.textContent = "Error: " + error.message;
             }
         }
 
+
+
         function populateForm(data) {
             if (data.name) document.getElementById('name').value = data.name;
             if (data.email) document.getElementById('email').value = data.email;
-
-            if (data.education && Array.isArray(data.education)) {
-                const eduText = data.education
-                    .map(edu => `${edu.degree} at ${edu.institution} (${edu.year})`)
-                    .join("\n");
-                document.getElementById('education').value = eduText;
+          
+            if (data.education) {
+                if (Array.isArray(data.education)) {
+                    const text = data.education.map(e => e.degree || e.institution || e).join(", ");
+                    document.getElementById('education').value = text;
+                } else {
+                    document.getElementById('education').value = data.education;
+                }
             }
 
             if (data.skills) document.getElementById('skills').value = Array.isArray(data.skills) ? data.skills.join(', ') : data.skills;
 
-            if (data.work) {
-                document.getElementById('work').value = JSON.stringify(data.work, null, 4);
-            }
-
-            if (data.skills) document.getElementById('skills').value = Array.isArray(data.skills) ? data.skills.join(', ') : data.skills;
-            if (data.projects) {
-                document.getElementById('projects').value = JSON.stringify(data.projects, null, 4);
-            }
-
-            if (data.links) {
-                document.getElementById('links').value = JSON.stringify(data.links, null, 4);
-            }
+            if (data.work) document.getElementById('work').value = JSON.stringify(data.work, null, 4);
+            if (data.projects) document.getElementById('projects').value = JSON.stringify(data.projects, null, 4);
+            if (data.links) document.getElementById('links').value = JSON.stringify(data.links, null, 4);
         }
-
 
         document.getElementById('profileForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const output = document.getElementById('jsonOutput');
-
+            output.textContent = "Sending Update...";
 
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
-                education: document.getElementById('education').value, 
                 skills: document.getElementById('skills').value.split(',').map(s => s.trim()),
+                // Wrap education in an array of objects to satisfy Mongoose schema
+                education: [{ degree: document.getElementById('education').value, institution: "NIT Delhi", year: "2026" }],
                 projects: [],
-                links: {},
-                work: []
+                work: [],
+                links: {}
             };
 
             try {
@@ -373,61 +330,31 @@
 
                 const rawWork = document.getElementById('work').value;
                 if (rawWork) formData.work = JSON.parse(rawWork);
-            } catch (e) {
-                alert("Invalid JSON in Projects, Links, or Work field");
+
+                const rawLinks = document.getElementById('links').value;
+                if (rawLinks) formData.links = JSON.parse(rawLinks);
+            } catch (err) {
+                alert("Invalid JSON in one of the text areas. Check for missing quotes or brackets.");
+                output.textContent = "Error: Invalid JSON format in form.";
                 return;
             }
 
-            output.textContent = "Sending Update...";
-
             try {
-                const response = await fetch(API_URL, {
+                const response = await fetch(`${BASE_URL}/profile`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
 
                 const result = await response.json();
                 output.textContent = JSON.stringify(result, null, 2);
+                alert("Profile Updated Successfully!");
 
             } catch (error) {
                 output.textContent = "Error submitting data: " + error.message;
             }
         });
-
-        document.getElementById('profileForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const output = document.getElementById('jsonOutput');
-
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                education: document.getElementById('education').value,
-                skills: document.getElementById('skills').value.split(',').map(s => s.trim()),
-                projects: [],
-                links: {}
-            };
-
-            try {
-
-                const rawProjects = document.getElementById('projects').value;
-                if (rawProjects) formData.projects = JSON.parse(rawProjects);
-
-
-                const rawLinks = document.getElementById('links').value;
-                if (rawLinks) formData.links = JSON.parse(rawLinks);
-
-            } catch (e) {
-                alert("Invalid JSON in Projects or Links field");
-                return;
-            }
-            output.textContent = "Sending Update...";
-        });
-
     </script>
 
 </body>
-
 </html>
