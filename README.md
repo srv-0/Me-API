@@ -1,0 +1,86 @@
+# Me-API Playground & Portfolio
+
+A full-stack REST API and dashboard built as a Backend Engineering Assessment. This project serves a dynamic portfolio via a RESTful API connected to MongoDB Atlas, featuring a live dashboard for data management.
+
+> **[Click Here to View My Resume]([https://drive.google.com/file/d/YOUR_RESUME_LINK/view](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link))**
+
+---
+
+## Architecture
+This project follows a **Client-Server Architecture** with a decoupled frontend and backend.
+
+* **Frontend (Vercel):** A Vanilla JS/HTML dashboard that consumes the API to display and update profile data.
+* **Backend (Render):** A Node.js/Express REST API that handles business logic and routing.
+* **Database (MongoDB Atlas):** A cloud NoSQL database storing the profile, projects, and work history schema.
+
+**Flow:** `Client (Vercel) -> HTTPS Request -> API (Render) -> Mongoose -> MongoDB Atlas`
+
+## Tech Stack
+* **Runtime:** Node.js
+* **Framework:** Express.js
+* **Database:** MongoDB Atlas (Mongoose ODM)
+* **Hosting:** Render (Backend), Vercel (Frontend)
+* **Security:** Strict CORS policy, Environment Variables
+
+---
+
+##  Setup Instructions
+
+### 1. Local Setup (Development)
+Prerequisites: Node.js installed, MongoDB URI.
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/yourusername/me-api.git](https://github.com/yourusername/me-api.git)
+    cd me-api
+    ```
+
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure Environment:**
+    Create a `.env` file in the root directory:
+    ```env
+    MONGO_URI=mongodb+srv://youruser:yourpass@cluster.mongodb.net/?retryWrites=true&w=majority
+    PORT=3000
+    ```
+
+4.  **Run the Server:**
+    ```bash
+    node server.js
+    ```
+    *Server will start on `http://localhost:3000`*
+
+### 2. Production Setup (Deployment)
+* **Backend:** Deployed on Render. Connection strings are stored in Render "Environment Variables".
+* **Frontend:** Deployed on Vercel with "Build Command" overridden to empty to serve static HTML.
+
+---
+
+##  Database Schema
+The data is modeled using a single Mongoose Schema (`Profile.js`):
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `name` | String | Full Name (Required) |
+| `email` | String | Unique Email (Required) |
+| `skills` | [String] | Array of technical skills |
+| `education` | [Object] | List of degrees/institutions |
+| `projects` | [Object] | List of projects with tech stack & links |
+| `work` | [Object] | Employment history |
+| `links` | Object | Social URLs (GitHub, LinkedIn, etc.) |
+
+---
+
+##  API Documentation & Sample cURL
+
+You can test the live API using these cURL commands.
+
+**Base URL:** `https://me-api-sqdk.onrender.com/api`
+
+### 1. Get Profile (GET)
+Fetches the full portfolio data.
+```bash
+curl -X GET [https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.onrender.com/api/profile)
