@@ -14,15 +14,15 @@ This project follows a **Client-Server Architecture** with a decoupled frontend 
 * **Database (MongoDB Atlas):** A cloud NoSQL database storing the profile, projects, and work history schema.
   
 ```mermaid
-graph TD;
-    A[User / Browser] -->|HTTPS Request| B[Frontend (Vercel)];
-    B -->|REST API Call| C[Backend API (Render)];
-    C -->|Mongoose Queries| D[(MongoDB Atlas)];
-    D -->|JSON Data| C;
-    C -->|JSON Response| B;
-    B -->|Render UI| A;
+flowchart TD
+    A["User / Browser"] -- "HTTPS Request" --> B["Frontend (Vercel)"]
+    B -- "REST API Call" --> C["Backend API (Render)"]
+    C -- "Mongoose Queries" --> D[("MongoDB Atlas")]
+    D -- "JSON Data" --> C
+    C -- "JSON Response" --> B
+    B -- "Render UI" --> A
 ```
-```
+
 **High-Level Overview:**
 
 ```text
