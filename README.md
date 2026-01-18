@@ -2,7 +2,7 @@
 
 A full-stack REST API and dashboard built as a Backend Engineering Assessment. This project serves a dynamic portfolio via a RESTful API connected to MongoDB Atlas, featuring a live dashboard for data management.
 
-> **[Click Here to View My Resume]([https://drive.google.com/file/d/YOUR_RESUME_LINK/view](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link))**
+> **[Click Here to View My Resume](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link)**
 
 ---
 
