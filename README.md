@@ -84,3 +84,32 @@ You can test the live API using these cURL commands.
 Fetches the full portfolio data.
 ```bash
 curl -X GET [https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.onrender.com/api/profile)
+```
+### 2. Search Projects (GET)
+Filter projects by a specific skill (e.g., "Node").
+```bash
+curl -X GET "[https://me-api-sqdk.onrender.com/api/projects?skill=Node](https://me-api-sqdk.onrender.com/api/projects?skill=Node)"
+```
+### 3. Update Profile (POST)
+Note: This updates the single user profile.
+```bash
+curl -X POST [https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.onrender.com/api/profile) \
+     -H "Content-Type: application/json" \
+     -d '{
+           "name": "Saurav Singh",
+           "email": "saurav@example.com",
+           "skills": ["Node.js", "Express", "MongoDB"]
+         }'
+```
+### 4. Health Check
+```
+curl -X GET [https://me-api-sqdk.onrender.com/health](https://me-api-sqdk.onrender.com/health)
+```
+
+### Known Limitations
+Single User Design: The system is currently designed as a personal portfolio, supporting only one "Profile" document in the database.
+No Authentication: The POST endpoint is currently open for demonstration purposes. In a real-world scenario, JWT authentication would be added.
+Cold Starts: Hosted on Render's free tier, so the first request after inactivity may take 30-60 seconds to respond.
+
+### Author
+Saurav Singh
