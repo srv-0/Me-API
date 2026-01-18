@@ -323,6 +323,7 @@
                 output.textContent = "Error: " + error.message;
             }
         }
+
         function populateForm(data) {
             if (data.name) document.getElementById('name').value = data.name;
             if (data.email) document.getElementById('email').value = data.email;
@@ -359,7 +360,7 @@
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
-                education: document.getElementById('education').value, // (Note: keep this as string or array depending on your choice)
+                education: document.getElementById('education').value, 
                 skills: document.getElementById('skills').value.split(',').map(s => s.trim()),
                 projects: [],
                 links: {},
