@@ -5,8 +5,31 @@ const cors = require('cors');
 const Profile = require('./models/Profile'); 
 
 const app = express();
-app.use(cors());
+
 app.use(express.json());
+
+const allowedOrigins = [
+  "https://me-api-umber.vercel.app",   
+  "http://localhost:5173",             
+  "http://localhost:3000"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("CORS Not Allowed: " + origin));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
+app.options("*", cors());
 
 const PORT = process.env.PORT || 3000;
 
