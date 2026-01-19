@@ -130,7 +130,9 @@ curl -X GET [https://me-api-sqdk.onrender.com/health](https://me-api-sqdk.onrend
 ### Known Limitations
 Single User Design: The system is currently designed as a personal portfolio, supporting only one "Profile" document in the database.
 No Authentication: The POST endpoint is currently open for demonstration purposes. In a real-world scenario, JWT authentication would be added.
-Cold Starts: Hosted on Render's free tier, so the first request after inactivity may take 30-60 seconds to respond.
+
+#### Cold Starts: Hosted on Render's free tier, so the first request after inactivity may take 30-60 seconds to respond.
 
 ### Author
 Saurav Singh
+National Institute of Technology, Delhi
