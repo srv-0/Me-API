@@ -5,8 +5,10 @@ A full-stack REST API and dashboard built as a Backend Engineering Assessment. T
 > **[Click Here to View My Resume](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link)**
 
 ---
+https://github.com/user-attachments/assets/eabb7d5b-c735-42c4-a849-45cd606522a5
 
 ## Architecture
+
 This project follows a **Client-Server Architecture** with a decoupled frontend and backend.
 
 * **Frontend (Vercel):** A Vanilla JS/HTML dashboard that consumes the API to display and update profile data.
