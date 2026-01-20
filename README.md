@@ -53,24 +53,24 @@ Hosted on Vercel        Hosted on Render
 Prerequisites: Node.js installed, MongoDB URI.
 
 1.  **Clone the repository:**
-    ```bash
     git clone [https://github.com/srv-0/Me-API.git](https://github.com/srv-0/ME-API.git)
+    ```bash
     cd me-api
     ```
 
-2.  **Install Dependencies:**
+3.  **Install Dependencies:**
     ```bash
     npm install
     ```
 
-3.  **Configure Environment:**
+4.  **Configure Environment:**
     Create a `.env` file in the root directory:
     ```env
     MONGO_URI=mongodb+srv://youruser:yourpass@cluster.mongodb.net/?retryWrites=true&w=majority
     PORT=3000
     ```
 
-4.  **Run the Server:**
+5.  **Run the Server:**
     ```bash
     node server.js
     ```
