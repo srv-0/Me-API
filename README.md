@@ -64,8 +64,10 @@ Hosted on Vercel        Hosted on Render
 Prerequisites: Node.js installed, MongoDB URI.
 
 1.  **Clone the repository:**
-2.  ```bash
+    ```bash
     git clone https://github.com/srv-0/ME-API.git
+    ```
+2.    ```bash
     cd me-api
     ```
 
