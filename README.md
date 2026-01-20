@@ -53,8 +53,8 @@ Hosted on Vercel        Hosted on Render
 Prerequisites: Node.js installed, MongoDB URI.
 
 1.  **Clone the repository:**
-    git clone [https://github.com/srv-0/Me-API.git](https://github.com/srv-0/ME-API.git)
-    ```bash
+2.  ```bash
+    git clone "https://github.com/srv-0/ME-API.git"
     cd me-api
     ```
 
@@ -106,17 +106,17 @@ You can test the live API using these cURL commands.
 ### 1. Get Profile (GET)
 Fetches the full portfolio data.
 ```bash
-curl -X GET [https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.onrender.com/api/profile)
+curl -X GET "https://me-api-sqdk.onrender.com/api/profile"
 ```
 ### 2. Search Projects (GET)
 Filter projects by a specific skill (e.g., "Node").
 ```bash
-curl -X GET "[https://me-api-sqdk.onrender.com/api/projects?skill=Node](https://me-api-sqdk.onrender.com/api/projects?skill=Node)"
+curl -X GET "https://me-api-sqdk.onrender.com/api/projects?skill=Node"
 ```
 ### 3. Update Profile (POST)
 Note: This updates the single user profile.
 ```bash
-curl -X POST [https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.onrender.com/api/profile) \
+curl -X POST https://me-api-sqdk.onrender.com/api/profile \
      -H "Content-Type: application/json" \
      -d '{
            "name": "Saurav Singh",
@@ -126,7 +126,7 @@ curl -X POST [https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.
 ```
 ### 4. Health Check
 ```
-curl -X GET [https://me-api-sqdk.onrender.com/health](https://me-api-sqdk.onrender.com/health)
+curl -X GET "https://me-api-sqdk.onrender.com/health"
 ```
 
 ### Known Limitations
