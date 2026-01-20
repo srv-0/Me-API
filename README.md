@@ -3,7 +3,7 @@
 A full-stack REST API and dashboard built as a Backend Engineering Assessment. This project serves a dynamic portfolio via a RESTful API connected to MongoDB Atlas, featuring a live dashboard for data management.
 ## Live Links
 - **Frontend Dashboard (Vercel): [https://me-api-umber.vercel.app](https://me-api-umber.vercel.app)**
-- **Backend API (Render): [https://me-api-sqdk.onrender.com/api](https://me-api-sqdk.onrender.com/api)**
+- **Backend API (Render): [https://me-api-sqdk.onrender.com/api](https://me-api-sqdk.onrender.com/api/profile)**
 - **Health Check: [https://me-api-sqdk.onrender.com/health](https://me-api-sqdk.onrender.com/health)**
 - **Resume : [Click Here to View My Resume](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link)**
 
