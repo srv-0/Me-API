@@ -8,6 +8,15 @@ A full-stack REST API and dashboard built as a Backend Engineering Assessment. T
 - **Resume : [Click Here to View My Resume](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link)**
 
 ---
+## Endpoints
+GET Profile: https://me-api-sqdk.onrender.com/api/profile
+
+GET Projects: https://me-api-sqdk.onrender.com/api/projects?skill=MongoDB
+
+POST Update Profile: https://me-api-sqdk.onrender.com/api/profile
+
+Health Check: https://me-api-sqdk.onrender.com/health
+
 https://github.com/user-attachments/assets/eabb7d5b-c735-42c4-a849-45cd606522a5
 
 ## Features
@@ -110,7 +119,7 @@ The data is modeled using a single Mongoose Schema (`Profile.js`):
 
 ---
 
-##  API Documentation & Sample cURL
+## API Documentation & Sample cURL
 
 You can test the live API using these cURL commands.
 
@@ -119,34 +128,41 @@ You can test the live API using these cURL commands.
 ### 1. Get Profile (GET)
 Fetches the full portfolio data.
 
-curl -X GET "https://me-api-sqdk.onrender.com/api/profile"
+```bash
+curl -X GET "[https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.onrender.com/api/profile)"
+```
 
 ### 2. Search Projects (GET)
-Filter projects by a specific skill (e.g., "Node").
+Filter projects by a specific skill (e.g., "MongoDB").
 
-curl -X GET "https://me-api-sqdk.onrender.com/api/projects?skill=Node"
+```bash
+curl -X GET "[https://me-api-sqdk.onrender.com/api/projects?skill=Node](https://me-api-sqdk.onrender.com/api/projects?skill=MongoDB)"
+```
 
 ### 3. Update Profile (POST)
 Note: This updates the single user profile.
 
-curl -X POST "https://me-api-sqdk.onrender.com/api/profile" \
+```bash
+curl -X POST [https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.onrender.com/api/profile) \
      -H "Content-Type: application/json" \
      -d '{
            "name": "Saurav Singh",
            "email": "saurav@example.com",
            "skills": ["Node.js", "Express", "MongoDB"]
          }'
+```
 
 ### 4. Health Check
 
-curl -X GET "https://me-api-sqdk.onrender.com/health"
+```bash
+curl -X GET "[https://me-api-sqdk.onrender.com/health](https://me-api-sqdk.onrender.com/health)"
+```
 
 ### Known Limitations
-* Single User Design: The system is currently designed as a personal portfolio, supporting only one "Profile" document in the database.
-* No Authentication: The POST endpoint is currently open for demonstration purposes. In a real-world scenario, JWT authentication would be added.
-* #### Cold Starts: Hosted on Render's free tier, so the first request after inactivity may take 30-60 seconds to respond.
+* **Single User Design:** The system is currently designed as a personal portfolio, supporting only one "Profile" document in the database.
+* **No Authentication:** The POST endpoint is currently open for demonstration purposes. In a real-world scenario, JWT authentication would be added.
+* **Cold Starts:** Hosted on Render's free tier, so the first request after inactivity may take 30-60 seconds to respond.
 
 ### Author
-Saurav Singh
-
+**Saurav Singh**
 National Institute of Technology, Delhi
