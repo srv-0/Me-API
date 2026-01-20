@@ -54,7 +54,7 @@ Prerequisites: Node.js installed, MongoDB URI.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/yourusername/me-api.git](https://github.com/yourusername/me-api.git)
+    git clone [https://github.com/srv-0/Me-API.git](https://github.com/srv-0/ME-API.git)
     cd me-api
     ```
 
