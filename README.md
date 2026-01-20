@@ -2,10 +2,10 @@
 
 A full-stack REST API and dashboard built as a Backend Engineering Assessment. This project serves a dynamic portfolio via a RESTful API connected to MongoDB Atlas, featuring a live dashboard for data management.
 ## Live Links
-- **Frontend Dashboard (Vercel): [https://me-api-umber.vercel.app](https://me-api-umber.vercel.app)**
-- **Backend API (Render): [https://me-api-sqdk.onrender.com/api](https://me-api-sqdk.onrender.com/api)**
-- **Health Check: [https://me-api-sqdk.onrender.com/health](https://me-api-sqdk.onrender.com/health)**
-> **[Click Here to View My Resume](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link)**
+> **Frontend Dashboard (Vercel): [https://me-api-umber.vercel.app](https://me-api-umber.vercel.app)**
+> **Backend API (Render): [https://me-api-sqdk.onrender.com/api](https://me-api-sqdk.onrender.com/api)**
+> **Health Check: [https://me-api-sqdk.onrender.com/health](https://me-api-sqdk.onrender.com/health)**
+> **Resume : [Click Here to View My Resume](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link)**
 
 ---
 https://github.com/user-attachments/assets/eabb7d5b-c735-42c4-a849-45cd606522a5
@@ -141,10 +141,13 @@ curl -X GET "https://me-api-sqdk.onrender.com/health"
 ```
 
 ### Known Limitations
-Single User Design: The system is currently designed as a personal portfolio, supporting only one "Profile" document in the database.
-No Authentication: The POST endpoint is currently open for demonstration purposes. In a real-world scenario, JWT authentication would be added.
-#### Cold Starts: Hosted on Render's free tier, so the first request after inactivity may take 30-60 seconds to respond.
+* Single User Design: The system is currently designed as a personal portfolio, supporting only one "Profile" document in the database.
+
+* No Authentication: The POST endpoint is currently open for demonstration purposes. In a real-world scenario, JWT authentication would be added.
+
+* #### Cold Starts: Hosted on Render's free tier, so the first request after inactivity may take 30-60 seconds to respond.
 
 ### Author
 Saurav Singh
+
 National Institute of Technology, Delhi
