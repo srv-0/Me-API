@@ -67,7 +67,7 @@ Prerequisites: Node.js installed, MongoDB URI.
     ```bash
     git clone https://github.com/srv-0/ME-API.git
     ```
-2.    ```bash
+2. ```bash
     cd me-api
     ```
 
