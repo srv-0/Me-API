@@ -165,4 +165,5 @@ curl -X GET "https://me-api-sqdk.onrender.com/health"
 
 ### Author
 **Saurav Singh**
+
 National Institute of Technology, Delhi
