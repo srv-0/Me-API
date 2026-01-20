@@ -123,27 +123,27 @@ The data is modeled using a single Mongoose Schema (`Profile.js`):
 
 You can test the live API using these cURL commands.
 
-**Base URL:** `https://me-api-sqdk.onrender.com/api`
+**Base URL:** `https://me-api-sqdk.onrender.com/api/profile`
 
 ### 1. Get Profile (GET)
 Fetches the full portfolio data.
 
 ```bash
-curl -X GET "[https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.onrender.com/api/profile)"
+curl -X GET "https://me-api-sqdk.onrender.com/api/profile"
 ```
 
 ### 2. Search Projects (GET)
 Filter projects by a specific skill (e.g., "MongoDB").
 
 ```bash
-curl -X GET "[https://me-api-sqdk.onrender.com/api/projects?skill=Node](https://me-api-sqdk.onrender.com/api/projects?skill=MongoDB)"
+curl -X GET "https://me-api-sqdk.onrender.com/api/projects?skill=MongoDB"
 ```
 
 ### 3. Update Profile (POST)
 Note: This updates the single user profile.
 
 ```bash
-curl -X POST [https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.onrender.com/api/profile) \
+curl -X POST https://me-api-sqdk.onrender.com/api/profile \
      -H "Content-Type: application/json" \
      -d '{
            "name": "Saurav Singh",
@@ -155,7 +155,7 @@ curl -X POST [https://me-api-sqdk.onrender.com/api/profile](https://me-api-sqdk.
 ### 4. Health Check
 
 ```bash
-curl -X GET "[https://me-api-sqdk.onrender.com/health](https://me-api-sqdk.onrender.com/health)"
+curl -X GET "https://me-api-sqdk.onrender.com/health"
 ```
 
 ### Known Limitations
