@@ -65,7 +65,7 @@ Prerequisites: Node.js installed, MongoDB URI.
 
 1.  **Clone the repository:**
 2.  ```bash
-    git clone "https://github.com/srv-0/ME-API.git"
+    git clone https://github.com/srv-0/ME-API.git
     cd me-api
     ```
 
@@ -127,7 +127,7 @@ curl -X GET "https://me-api-sqdk.onrender.com/api/projects?skill=Node"
 ### 3. Update Profile (POST)
 Note: This updates the single user profile.
 ```bash
-curl -X POST https://me-api-sqdk.onrender.com/api/profile \
+curl -X POST "https://me-api-sqdk.onrender.com/api/profile" \
      -H "Content-Type: application/json" \
      -d '{
            "name": "Saurav Singh",
