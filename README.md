@@ -118,17 +118,17 @@ You can test the live API using these cURL commands.
 
 ### 1. Get Profile (GET)
 Fetches the full portfolio data.
-```bash
+
 curl -X GET "https://me-api-sqdk.onrender.com/api/profile"
-```
+
 ### 2. Search Projects (GET)
 Filter projects by a specific skill (e.g., "Node").
-```bash
+
 curl -X GET "https://me-api-sqdk.onrender.com/api/projects?skill=Node"
-```
+
 ### 3. Update Profile (POST)
 Note: This updates the single user profile.
-```bash
+
 curl -X POST "https://me-api-sqdk.onrender.com/api/profile" \
      -H "Content-Type: application/json" \
      -d '{
@@ -136,11 +136,10 @@ curl -X POST "https://me-api-sqdk.onrender.com/api/profile" \
            "email": "saurav@example.com",
            "skills": ["Node.js", "Express", "MongoDB"]
          }'
-```
+
 ### 4. Health Check
-```
+
 curl -X GET "https://me-api-sqdk.onrender.com/health"
-```
 
 ### Known Limitations
 * Single User Design: The system is currently designed as a personal portfolio, supporting only one "Profile" document in the database.
