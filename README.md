@@ -2,22 +2,50 @@
 
 A full-stack REST API and dashboard built as a Backend Engineering Assessment. This project serves a dynamic portfolio via a RESTful API connected to MongoDB Atlas, featuring a live dashboard for data management.
 ## Live Links
-- **Frontend Dashboard (Vercel): [https://me-api-umber.vercel.app](https://me-api-umber.vercel.app)**
-- **Backend API (Render): [https://me-api-sqdk.onrender.com/api](https://me-api-sqdk.onrender.com/api/profile)**
-- **Health Check: [https://me-api-sqdk.onrender.com/health](https://me-api-sqdk.onrender.com/health)**
+- **Frontend Dashboard : [Visit Dashboard (Vercel)](https://me-api-umber.vercel.app)**
+- **Backend API : [Base URL (Render)](https://me-api-sqdk.onrender.com/api/profile)**
+- **Health Check: [Server Status](https://me-api-sqdk.onrender.com/health)**
 - **Resume : [Click Here to View My Resume](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link)**
 
 ---
-## Endpoints
-GET Profile: https://me-api-sqdk.onrender.com/api/profile
-
-GET Projects: https://me-api-sqdk.onrender.com/api/projects?skill=MongoDB
-
-POST Update Profile: https://me-api-sqdk.onrender.com/api/profile
-
-Health Check: https://me-api-sqdk.onrender.com/health
-
+## Demo
 https://github.com/user-attachments/assets/eabb7d5b-c735-42c4-a849-45cd606522a5
+
+---
+## API Endpoints
+The API supports profile management (CRUD) and advanced filtering (Queries).
+
+| Method | Endpoint | Description | Query Params / Notes |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/api/profile` | Retrieve full profile details (Bio, Skills, Work, etc). | |
+| **POST** | `/api/profile` | Create or Update profile details. | *Requires JSON body (see below)* |
+| **GET** | `/api/projects` | Get all projects or filter by technology. | `?skill=Python` |
+| **GET** | `/api/skills/top` | Retrieve a list of highlighted/top skills. | |
+| **GET** | `/api/search` | Global search across the portfolio. | `?q=search_term` |
+| **GET** | `/health` | Check API status. | |
+
+### Update Profile Payload (POST)
+To update the profile, send a JSON body to `/api/profile`.
+
+```json
+{
+  "name": "Your Name",
+  "email": "youremail@example.com",
+  "skills": ["Node.js", "MongoDB", "React"],
+  "projects": [
+    {
+      "title": "Project Name",
+      "description": "Short description...",
+      "links": "https://github.com/yourusername/project"
+    }
+  ],
+  "links": {
+    "github": "https://github.com/yourusername",
+    "linkedin": "https://linkedin.com/in/yourusername"
+  }
+}
+```
+---
 
 ## Features
 - REST API to serve portfolio data (Profile, Projects, Work, Education)
