@@ -17,10 +17,9 @@ The API supports profile management (CRUD) and advanced filtering (Queries).
 
 | Method | Endpoint | Description | Query Params / Notes |
 | :--- | :--- | :--- | :--- |
-| **GET** | `/api/profile` | Retrieve full profile details (Bio, Skills, Work, etc). | |
+| **GET** | `/api/profile` | Retrieve full profile details (Bio, Skills, Work, etc). | Shows filtered result in UI|
 | **POST** | `/api/profile` | Create or Update profile details. | *Requires JSON body (see below)* |
 | **GET** | `/api/projects` | Get all projects or filter by technology. | `?skill=Python` |
-| **GET** | `/api/skills/top` | Retrieve a list of highlighted/top skills. | |
 | **GET** | `/api/search` | Global search across the portfolio. | `?q=search_term` |
 | **GET** | `/health` | Check API status. | |
 
