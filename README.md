@@ -102,24 +102,21 @@ Prerequisites: Node.js installed, MongoDB URI.
 1.  **Clone the repository:**
     ```bash
     git clone https://github.com/srv-0/ME-API.git
-    ```
-2. ```bash
     cd me-api
     ```
-
-3.  **Install Dependencies:**
+2.  **Install Dependencies:**
     ```bash
     npm install
     ```
 
-4.  **Configure Environment:**
+3.  **Configure Environment:**
     Create a `.env` file in the root directory:
     ```env
     MONGO_URI=mongodb+srv://youruser:yourpass@cluster.mongodb.net/?retryWrites=true&w=majority
     PORT=3000
     ```
 
-5.  **Run the Server:**
+4.  **Run the Server:**
     ```bash
     node server.js
     ```
