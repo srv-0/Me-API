@@ -23,7 +23,7 @@ The API supports profile management (CRUD) and advanced filtering (Queries).
 | **GET** | `/api/projects` | Get all projects or filter by technology. | `?skill=Python` |
 | **GET** | `/api/search` | Global search across the portfolio. | `?q=search_term` |
 | **GET** | `/api/stats` | Returns a summary of the data available in the profile database. | |
-| **POST** | `/api/contact` | Create or Update profile details. | Does not send an actual email (safe for testing).|
+| **POST** | `/api/contact` | Contact or send message. | Does not send an actual email (safe for testing).|
 | **GET** | `/health` | Check API status. | |
 
 ### Update Profile Payload (POST)
