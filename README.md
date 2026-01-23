@@ -3,7 +3,7 @@
 A full-stack REST API and dashboard built as a Backend Engineering Assessment. This project serves a dynamic portfolio via a RESTful API connected to MongoDB Atlas, featuring a live dashboard for data management.
 ## Live Links
 - **Frontend Dashboard : [Visit Dashboard (Vercel)](https://me-api-umber.vercel.app)**
-- **Backend API : [Base URL (Render)](https://me-api-sqdk.onrender.com/api/profile)**
+- **Backend API : [Base URL (Render)](https://me-api-sqdk.onrender.com/api)**
 - **Health Check: [Server Status](https://me-api-sqdk.onrender.com/health)**
 - **Resume : [Click Here to View My Resume](https://drive.google.com/file/d/1ONV7hl9RR3wPi7CkzeHnwWn-h7sWklm1/view?usp=drive_link)**
 
@@ -17,10 +17,13 @@ The API supports profile management (CRUD) and advanced filtering (Queries).
 
 | Method | Endpoint | Description | Query Params / Notes |
 | :--- | :--- | :--- | :--- |
+| **GET** | `/api` | Retrieve full profile details (Bio, Skills, Work, etc). | Shows filtered result at backend api|
 | **GET** | `/api/profile` | Retrieve full profile details (Bio, Skills, Work, etc). | Shows filtered result in UI|
 | **POST** | `/api/profile` | Create or Update profile details. | *Requires JSON body (see below)* |
 | **GET** | `/api/projects` | Get all projects or filter by technology. | `?skill=Python` |
 | **GET** | `/api/search` | Global search across the portfolio. | `?q=search_term` |
+| **GET** | `/api/stats` | Returns a summary of the data available in the profile database. | |
+| **POST** | `/api/contact` | Create or Update profile details. | Does not send an actual email (safe for testing).|
 | **GET** | `/health` | Check API status. | |
 
 ### Update Profile Payload (POST)
@@ -147,23 +150,37 @@ The data is modeled using a single Mongoose Schema (`Profile.js`):
 
 You can test the live API using these cURL commands.
 
-**Base URL:** `https://me-api-sqdk.onrender.com/api/profile`
+**Base URL:** `https://me-api-sqdk.onrender.com/api`
 
-### 1. Get Profile (GET)
+### 1. Root Profile (`/api`)
+Fetches the complete profile data, acting as the main entry point for the API.
+- **URL:** `/api`
+- **Method:** `GET`
+- **Response:**
+  ```json
+  {
+    "name": "Your Name",
+    "about": "Full Stack Developer...",
+    "skills": ["JavaScript", "React", "Node.js"],
+    "projects": [...],
+    "work": [...]
+  }
+
+### 2. Get Profile (GET)
 Fetches the full portfolio data.
 
 ```bash
 curl -X GET "https://me-api-sqdk.onrender.com/api/profile"
 ```
 
-### 2. Search Projects (GET)
+### 3. Search Projects (GET)
 Filter projects by a specific skill (e.g., "MongoDB").
 
 ```bash
 curl -X GET "https://me-api-sqdk.onrender.com/api/projects?skill=MongoDB"
 ```
 
-### 3. Update Profile (POST)
+### 4. Update Profile (POST)
 Note: This updates the single user profile.
 
 ```bash
@@ -175,8 +192,44 @@ curl -X POST https://me-api-sqdk.onrender.com/api/profile \
            "skills": ["Node.js", "Express", "MongoDB"]
          }'
 ```
+### 5. Top Skills
+Returns the top skills from the profile. Useful for displaying quick tags or highlights.
 
-### 4. Health Check
+```
+curl -X GET "https://me-api-sqdk.onrender.com/api/skills/top"
+```
+
+### 6. API Stats
+Provides a summary of the data available in the profile (counts of projects, skills, etc.).
+
+```
+curl -X GET "https://me-api-sqdk.onrender.com/api/stats"
+```
+### 7. Contact 
+A playground endpoint to simulate a contact form submission. It validates input but does not send an actual email (safe for public testing).
+
+```bash
+curl -X POST https://me-api-sqdk.onrender.com/api/contact \
+     -H "Content-Type: application/json" \
+     -d '{
+           "name": "xyz_yadav",
+           "email": "xyz@example.com",
+           "message": "Hi, I'd like to hire you!"
+         }'
+```
+#### Example Response
+```json
+{
+  "success": true,
+  "message": "Thanks xyz_yadav! This is a playground, so your message wasn't actually sent.",
+  "received_data": {
+    "name": "xyz_yadav",
+    "email": "xyz@example.com",
+    "message_length": 29
+  }
+}
+```
+### 8. Health Check
 
 ```bash
 curl -X GET "https://me-api-sqdk.onrender.com/health"
