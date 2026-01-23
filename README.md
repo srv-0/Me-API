@@ -152,19 +152,11 @@ You can test the live API using these cURL commands.
 
 **Base URL:** `https://me-api-sqdk.onrender.com/api`
 
-### 1. Root Profile (`/api`)
+### 1. Root Profile (GET)
 Fetches the complete profile data, acting as the main entry point for the API.
-- **URL:** `/api`
-- **Method:** `GET`
-- **Response:**
-  ```json
-  {
-    "name": "Your Name",
-    "about": "Full Stack Developer...",
-    "skills": ["JavaScript", "React", "Node.js"],
-    "projects": [...],
-    "work": [...]
-  }
+```
+curl -X GET "https://me-api-sqdk.onrender.com/api"
+```
 
 ### 2. Get Profile (GET)
 Fetches the full portfolio data.
@@ -192,20 +184,20 @@ curl -X POST https://me-api-sqdk.onrender.com/api/profile \
            "skills": ["Node.js", "Express", "MongoDB"]
          }'
 ```
-### 5. Top Skills
+### 5. Top Skills (GET)
 Returns the top skills from the profile. Useful for displaying quick tags or highlights.
 
 ```
 curl -X GET "https://me-api-sqdk.onrender.com/api/skills/top"
 ```
 
-### 6. API Stats
+### 6. API Stats (GET)
 Provides a summary of the data available in the profile (counts of projects, skills, etc.).
 
 ```
 curl -X GET "https://me-api-sqdk.onrender.com/api/stats"
 ```
-### 7. Contact 
+### 7. Contact (POST)
 A playground endpoint to simulate a contact form submission. It validates input but does not send an actual email (safe for public testing).
 
 ```bash
@@ -229,7 +221,7 @@ curl -X POST https://me-api-sqdk.onrender.com/api/contact \
   }
 }
 ```
-### 8. Health Check
+### 8. Health Check (GET)
 
 ```bash
 curl -X GET "https://me-api-sqdk.onrender.com/health"
