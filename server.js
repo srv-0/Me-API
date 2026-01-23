@@ -43,6 +43,15 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', uptime: process.uptime() });
 });
 
+app.get('/api', async (req, res) => {
+  try {
+    const profile = await Profile.findOne();
+    if (!profile) return res.status(404).json({ message: 'Profile not found' });
+    res.status(200).json(profile);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.post('/api/profile', async (req, res) => {
   try {
@@ -56,6 +65,23 @@ app.post('/api/profile', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+app.post('/api/contact', (req, res) => {
+  const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({ 
+        error: "Validation Failed", 
+        missing_fields: ["name", "email", "message"].filter(f => !req.body[f]) 
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    message: `Thanks ${name}! This is a playground, so your message wasn't actually sent, but the API accepted it perfectly.`,
+    received_data: { name, email, message_length: message.length }
+  });
 });
 
 
@@ -126,7 +152,7 @@ app.get('/api/skills/top', async (req, res) => {
     if (!profile) return res.status(404).json({ message: 'Profile not found' });
 
     const skills = profile.skills || [];
-    const topSkills = skills.slice(0, 5);
+    const topSkills = skills.slice(0, 8);
 
     res.status(200).json(topSkills);
   } catch (err) {
@@ -134,6 +160,24 @@ app.get('/api/skills/top', async (req, res) => {
   }
 });
 
+app.get('/api/stats', async (req, res) => {
+  try {
+    const profile = await Profile.findOne();
+    if (!profile) return res.status(404).json({ message: 'Profile not found' });
+
+    const stats = {
+      total_projects: profile.projects.length,
+      total_skills: profile.skills.length,
+      total_experience: profile.work.length,
+      experience_years: new Date().getFullYear() - 2023, 
+      top_skill: profile.skills[0] || "N/A"
+    };
+
+    res.status(200).json(stats);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
